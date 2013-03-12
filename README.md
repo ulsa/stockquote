@@ -144,7 +144,7 @@ One or more queue names can also be given as arguments:
 
 * The `client` application accepts either no arguments or a `noworker` argument.
 * The `worker` application accepts no arguments.
-* The `queue` application accepts no arguments.
+* The `queue` application accepts zero or more queue names.
 
 ## Examples
 
