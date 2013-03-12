@@ -23,18 +23,26 @@ accordingly.
 
 The button `Clear` will clear the table form any stock information. New stock
 symbols can be added by typing a stock symbol in the text field, like `GOOG`
-or `AMZN` for example, and clicking `Add symbol`.
+or `AMZN` for example, and clicking `Add Symbol`.
 
 By default, the client starts its own multi-threaded worker, but it can also be
 told to not start a worker. In the latter case, workers need to be provided by
 other means, for example by starting workers as separate processes. More about
 how to do that later.
 
+A list of about 30 stock symbols are preloaded:
+
 ![Alt text](img/preloaded_stocks.png "A list of stock symbols are preloaded")
+
+All stock quotes have been retrieved (I tried to snap when it had only received some of the quotes, but it was too fast for me):
 
 ![Alt text](img/stockinfo_retrieved.png "Stock quotes have been retrieved")
 
+The table can be sorted by any column:
+
 ![Alt text](img/stocks_sorted.png "Stock quotes can be sorted in various ways")
+
+New interesting symbols can be added:
 
 ![Alt text](img/goog_symbol_added.png "A new stock symbol has been added")
 
@@ -77,26 +85,45 @@ dependencies:
 
     $ lein uberjar
 
-The resulting jar file can be run directly:
+The resulting jar file can be run directly, using `java -jar`:
 
     $ java -jar target/stockquote-0.1.0-SNAPSHOT-standalone.jar
 
-It can also be run indirectly, with the main class specified:
+It can also be run indirectly, using `java -cp`, with the main class specified:
 
     $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.client$_main
 
+The client will print this at startup:
+
+    Starting a result consumer
+    Starting a worker as well
+
 ### Starting the client without a worker
 
-With no arguments, the client starts its own worker. If you want to provide
-your own workers, you can give `noworker` as an argument:
+With no arguments, the client starts its own worker. This is good for demo purposes,
+but it's also possible to tell the client to not start its own worker, should you want
+to provide your own separate workers. You can give `noworker` as an argument:
 
     $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar noworker
+
+or just:
+
+    $ lein run noworker
+
+The client will print this at startup:
+
+    Starting a result consumer
+    No worker started; you have to start one separately
 
 ### Starting a separate worker
 
 The same jar file can be used to start a worker process as well:
 
     $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.worker$_main
+
+or just:
+
+    $ lein run -m stockquote.worker
 
 ### Getting queue information
 
@@ -105,9 +132,13 @@ it will provide queue attributes for all the queues accessible by the account us
 
     $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.queue$_main
 
+or just:
+
+    $ lein run -m stockquote.queue
+
 One or more queue names can also be given as arguments:
 
-    $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.queue$_main sqresult
+    $ lein run -m stockquote.queue sqresult
 
 ## Options
 
@@ -119,7 +150,7 @@ One or more queue names can also be given as arguments:
 
 ### Starting a separate worker
 
-    $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.worker$_main
+    $ lein run -m stockquote.worker
     Listening for stock symbols on queue:
          https://sqs.eu-west-1.amazonaws.com/123456789012/sqwork 
     Writing quotes to queue:
@@ -127,7 +158,7 @@ One or more queue names can also be given as arguments:
 
 ### Queue information for all queues
 
-    $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.queue$_main
+    $ lein run -m stockquote.queue
     Status for queue https://sqs.eu-west-1.amazonaws.com/123456789012/sqwork
     {"ApproximateNumberOfMessages" "0",
      ...
@@ -137,7 +168,7 @@ One or more queue names can also be given as arguments:
 
 ### Queue information for a given queue
 
-    $ java -cp target/stockquote-0.1.0-SNAPSHOT-standalone.jar stockquote.queue$_main sqresult
+    $ lein run -m stockquote.queue sqresult
     Status for queue https://sqs.eu-west-1.amazonaws.com/123456789012/sqresult
     {"ApproximateNumberOfMessages" "0",
      ...
