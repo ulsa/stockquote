@@ -1,4 +1,4 @@
-(ns stockquote-client.core
+(ns stockquote.core
   (:require [cemerick.bandalore :as sqs]))
 
 (def stocks ["VRTA" "OREX" "LEDR" "FSTF" "DXYN" "BOCH" "ENZN"

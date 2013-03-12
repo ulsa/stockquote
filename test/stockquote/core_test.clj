@@ -1,6 +1,6 @@
-(ns stockquote-client.core-test
+(ns stockquote.core-test
   (:use clojure.test
-        stockquote-client.core))
+        stockquote.core))
 
 (deftest a-test
   (testing "FIXME, I fail."

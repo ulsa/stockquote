@@ -1,6 +1,6 @@
-(ns stockquote-client.client
-  (:require [stockquote-client.core :refer :all ]
-            [stockquote-client.worker :as worker]
+(ns stockquote.client
+  (:require [stockquote.core :refer :all ]
+            [stockquote.worker :as worker]
             [seesaw.core :refer :all ]
             [seesaw.table :as table]
             [seesaw.swingx :as swingx]

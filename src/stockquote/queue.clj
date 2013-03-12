@@ -1,5 +1,5 @@
-(ns stockquote-client.queue
-  (:require [stockquote-client.core :refer :all ]
+(ns stockquote.queue
+  (:require [stockquote.core :refer :all ]
             [cemerick.bandalore :as sqs]
             [clojure.string :as str]
             [clojure.pprint :refer :all])

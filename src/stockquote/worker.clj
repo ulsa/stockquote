@@ -1,5 +1,5 @@
-(ns stockquote-client.worker
-  (:require [stockquote-client.core :refer :all]
+(ns stockquote.worker
+  (:require [stockquote.core :refer :all]
             [cemerick.bandalore :as sqs]
             [clj-http.client :as http]
             [clojure.data.csv :as csv]

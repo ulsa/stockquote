@@ -1,4 +1,4 @@
-(defproject stockquote-client "0.1.0-SNAPSHOT"
+(defproject stockquote "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -9,5 +9,5 @@
                  [org.clojure/data.csv "0.1.2"]
                  [seesaw "1.4.3"]
                  [cheshire "5.0.2"]]
-  :main stockquote-client.client
+  :main stockquote.client
   :aot :all)
