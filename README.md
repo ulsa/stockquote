@@ -28,7 +28,15 @@ or `AMZN` for example, and clicking `Add symbol`.
 By default, the client starts its own multi-threaded worker, but it can also be
 told to not start a worker. In the latter case, workers need to be provided by
 other means, for example by starting workers as separate processes. More about
-how to do that below.
+how to do that later.
+
+![Alt text](img/preloaded_stocks.png "A list of stock symbols are preloaded")
+
+![Alt text](img/stockinfo_retrieved.png "Stock quotes have been retrieved")
+
+![Alt text](img/stocks_sorted.png "Stock quotes can be sorted in various ways")
+
+![Alt text](img/goog_symbol_added.png "A new stock symbol has been added")
 
 ## Quickstart
 
