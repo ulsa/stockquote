@@ -41,6 +41,12 @@ Run the client with Leiningen:
 [Leiningen](https://github.com/technomancy/leiningen) is needed in order to compile 
 the application. It will also make running it easier.
 
+Make sure you have a file containing the AWS credentials for your account:
+
+    $ cat ~/.aws.properties 
+    {:aws.accessKeyId "some_access_key"
+     :aws.secretKey "some_secret_key"}
+
 ## Usage
 
 ### Starting the client with a worker
