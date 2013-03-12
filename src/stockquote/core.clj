@@ -11,7 +11,7 @@
 
 (def ^:dynamic *endpoint* "https://sqs.eu-west-1.amazonaws.com/")
 
-(def ^:dynamic *base* "496151958509/")
+(def ^:dynamic *base* (str (:aws.account auth) "/"))
 
 (def ^:dynamic *work-queue-name* "sqwork")
 

@@ -38,14 +38,23 @@ Run the client with Leiningen:
 
 ## Installation
 
-[Leiningen](https://github.com/technomancy/leiningen) is needed in order to compile 
+1. [Leiningen](https://github.com/technomancy/leiningen) is needed in order to compile 
 the application. It will also make running it easier.
 
-Make sure you have a file containing the AWS credentials for your account:
+2. Make sure you have a file containing the AWS credentials for your account, including the
+account number, which is used to identify the queues:
 
-    $ cat ~/.aws.properties 
-    {:aws.accessKeyId "some_access_key"
-     :aws.secretKey "some_secret_key"}
+        $ cat ~/.aws.properties 
+        {:aws.accessKeyId "some_access_key"
+         :aws.secretKey "some_secret_key"
+         :aws.account "some_account_number"}
+
+3. Create two queues on Amazon SQS:
+
+    * sqwork
+    * sqresult
+
+4. Make sure the account you're using has access to your SQS queues.
 
 ## Usage
 
