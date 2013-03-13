@@ -21,7 +21,7 @@ quote result to a result queue. The client will poll the result queue using a
 multi-threaded receiver, and update the GUI table with the retrieved results
 accordingly.
 
-The button `Clear` will clear the table form any stock information. New stock
+The button `Clear` will clear the table from any stock information. New stock
 symbols can be added by typing a stock symbol in the text field, like `GOOG`
 or `AMZN` for example, and clicking `Add Symbol`.
 
