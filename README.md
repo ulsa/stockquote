@@ -67,8 +67,8 @@ account number, which is used to identify the queues:
 
 3. Create two queues on Amazon SQS:
 
-    * sqwork
-    * sqresult
+        * sqwork
+        * sqresult
 
 4. Make sure the account you're using has access to your SQS queues.
 
