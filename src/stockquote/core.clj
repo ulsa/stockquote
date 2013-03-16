@@ -27,3 +27,8 @@
 (def work-queue (str queue-base *work-queue-name*))
 
 (def result-queue (str queue-base *result-queue-name*))
+
+(defn start-consuming-messages [client queue f]
+  (future
+    (dorun (pmap (sqs/deleting-consumer client f)
+             (sqs/polling-receive client queue :period 1000 :max-wait Long/MAX_VALUE :limit 10)))))

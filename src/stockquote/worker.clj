@@ -21,13 +21,9 @@
   (let [stock-symbol (:body message)]
     (process-stock stock-symbol)))
 
-(defn start-consuming-work [client q]
-  (dorun (pmap (sqs/deleting-consumer client process-message)
-               (sqs/polling-receive client q :period 1000 :max-wait Long/MAX_VALUE :limit 10))))
-
 (defn -main
   "Starts a worker that reads stock symbols from a work queue, asks Yahoo
  for a stock quote, and writes the quote on a result queue as a JSON array"
   [& args]
   (println "Listening for stock symbols on queue:\n\t" work-queue "\nWriting quotes to queue:\n\t" result-queue)
-  (start-consuming-work client work-queue))
+  (start-consuming-messages client work-queue process-message))

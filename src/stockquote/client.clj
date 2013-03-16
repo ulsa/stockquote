@@ -51,11 +51,6 @@
           (invoke-now (table/insert-at! model (table/row-count model) result)))
         (invoke-now (table/update-at! model (stock-symbol @rows) result))))))
 
-(defn start-consuming-results [client q]
-  (future
-    (dorun (pmap (sqs/deleting-consumer client (comp update-table json/decode :body))
-             (sqs/polling-receive client q :period 1000 :max-wait Long/MAX_VALUE :limit 10)))))
-
 (defn add-symbol [stock-symbol]
   (update-table (list* stock-symbol (repeat 16 nil))))
 
@@ -116,10 +111,10 @@
   (invoke-later (-> f pack! show!))
 
   (println "Starting a result consumer")
-  (start-consuming-results client result-queue)
+  (start-consuming-messages client result-queue (comp update-table json/decode :body))
 
   (if (and (seq args) (= "noworker" (first args)))
     (println "No worker started; you have to start one separately")
     (do
       (println "Starting a worker as well")
-      (worker/start-consuming-work client work-queue))))
+      (start-consuming-messages client work-queue worker/process-message))))
